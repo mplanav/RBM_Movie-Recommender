@@ -1,0 +1,137 @@
+# ========================================
+#  GLOBAL
+# ========================================
+
+# Entornos virtuales y node_modules
+
+# Ignorar entornos virtuales en cualquier carpeta
+venv/
+*/venv/
+
+venv/
+.env/
+node_modules/
+
+# Archivos de configuración sensibles
+*.env
+*.env.local
+*.log
+*.pid
+*.seed
+*.bak
+*.tmp
+*.swp
+
+# Cachés de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Cachés de compilación
+build/
+dist/
+*.egg-info/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ========================================
+#  BACKEND (FastAPI, Python)
+# ========================================
+
+# Carpeta del entorno virtual (por si hay varios)
+backend/venv/
+backend/__pycache__/
+backend/*.db
+backend/*.sqlite3
+
+# Archivos generados
+backend/logs/
+backend/tmp/
+backend/.pytest_cache/
+backend/.mypy_cache/
+backend/.coverage
+backend/htmlcov/
+
+# ========================================
+#  COLLECTOR (Python)
+# ========================================
+
+collector/venv/
+collector/__pycache__/
+collector/.pytest_cache/
+collector/tmp/
+collector/logs/
+collector/*.log
+
+# ========================================
+#  FRONTEND (React / TypeScript)
+# ========================================
+
+# Dependencias y build
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/.cache/
+
+# Configuración temporal
+frontend/.eslintcache
+frontend/.env*
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
+
+# ========================================
+#  DOCKER & DEVOPS
+# ========================================
+
+# Archivos de runtime
+*.pid
+*.seed
+*.pid.lock
+
+# Docker
+docker-compose.override.yml
+.docker/
+**/Dockerfile.local
+**/Dockerfile.dev
+
+# ========================================
+#  TESTS / QA
+# ========================================
+
+coverage/
+.coverage
+pytest_cache/
+reports/
+test-results/
+
+# ========================================
+#  IDEs y editores
+# ========================================
+
+# VS Code
+.vscode/
+.history/
+*.code-workspace
+
+# JetBrains / PyCharm
+.idea/
+*.iml
+
+# Otros
+*.sublime-project
+*.sublime-workspace
+
+# ========================================
+#  MISC
+# ========================================
+
+# Archivos temporales o de ejemplo
+*.example
+*.backup
