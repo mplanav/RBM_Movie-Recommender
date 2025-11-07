@@ -129,17 +129,27 @@ def train_val_split_by_user(
     """
 
 def to_tf_dataset(
-        X: np.ndarray,
-        mask: np.ndarray,
-        batch_size: int = 64,
-        shuffle: bool = True,
-        seed: int = 42,
+    X: np.ndarray,
+    mask: np.ndarray,
+    batch_size: int = 64,
+    shuffle: bool = True,
+    seed: int = 42,
 ) -> tf.data.Dataset:
+    """
+    Convierte (X, mask) a un tf.data.Dataset de pares (input, mask).
+
+    El RBM consumirá `input` y usará `mask` para computar la pérdida solo sobre celdas observadas.
+    """
     ds = tf.data.Dataset.from_tensor_slices((X, mask))
     if shuffle:
-        ds = tf.shuffle(buffer_size=len(X), seed=seed, reshuffle_each_iteration=True)
+        ds = ds.shuffle(
+            buffer_size=len(X),
+            seed=seed,
+            reshuffle_each_iteration=True
+        )
     ds = ds.batch(batch_size).prefetch(tf.data.AUTOTUNE)
     return ds
+
 
 
 """
@@ -191,12 +201,15 @@ def quick_prepare_pipeline(
     ds_val = to_tf_dataset(Xva, Mva, batch_size=batch_size, shuffle=False, seed=seed)
 
     meta = {
-        'num_users': int(X.shape[0]),
-        'num_items': int(X.shape[1]),
-        'binarize': binarize,
-        'threshold': threshold,
-        'val_ratio': val_ratio,
-        'batch_size': batch_size,
+        "num_users": int(X.shape[0]),
+        "num_items": int(X.shape[1]),
+        "binarize": binarize,
+        "threshold": threshold,
+        "val_ratio": val_ratio,
+        "batch_size": batch_size,
+        "X": X,
+        "mask": mask,
+        "mappings": mappings,
     }
     return ds_train, ds_val, meta
 
